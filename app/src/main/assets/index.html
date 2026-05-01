@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magasin D'outillage</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #eaf3fb;
+  padding: 15px;
+}
+
+h1 {
+  color: #2c3e50;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+button {
+  background: #3498db;
+  color: white;
+  border: none;
+}
+
+.log {
+  background: white;
+  padding: 10px;
+  margin-top: 10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Magasin D'outillage</h1>
+
+<input id="worker" placeholder="Nom de l'employé">
+<input id="tool" placeholder="Nom de l'outil">
+
+<button onclick="addLog()">Enregistrer</button>
+
+<div id="logs"></div>
+
+<script>
+let logs = [];
+
+function addLog() {
+  let worker = document.getElementById("worker").value;
+  let tool = document.getElementById("tool").value;
+
+  if (!worker || !tool) return;
+
+  let log = worker + " → " + tool + " (" + new Date().toLocaleString() + ")";
+  logs.unshift(log);
+
+  render();
+}
+
+function render() {
+  let div = document.getElementById("logs");
+  div.innerHTML = "";
+
+  logs.forEach(l => {
+    let el = document.createElement("div");
+    el.className = "log";
+    el.innerText = l;
+    div.appendChild(el);
+  });
+}
+</script>
+
+</body>
+</html>
